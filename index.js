@@ -5,19 +5,6 @@ const Engineer = require("./lib/Engineer");
 const Employee = require("./lib/Employee");
 const Intern = require("./lib/Intern");
 let teamMemberArr = [];
-const addMember = () => {
-  console.log(`
-    =======================
-    Add New Member to Team
-    =======================
-    `);
-  inquirer.prompt({
-    type: "confirm",
-    name: "confirmAddMember",
-    message: "Would you like to add a new employee to this team?",
-    default: false,
-  });
-};
 
 const teamMembers = () => {
   inquirer
