@@ -1,8 +1,5 @@
-
-
-
 function generatePage(teamMemberArr) {
-    return `
+  return `
     
-    `
+    `;
 }
