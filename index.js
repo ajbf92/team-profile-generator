@@ -85,7 +85,7 @@ const teamMembers = () => {
         if (answer.confirmAddMember == true) {
           teamMembers();
         } else {
-            console.log(teamMemberArr);
+          console.log(teamMemberArr);
           return teamMemberArr;
         }
       }
