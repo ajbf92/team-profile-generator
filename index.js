@@ -1,13 +1,17 @@
-// const inquirer = require("inquirer");
 const inquirer = require("inquirer");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Employee = require("./lib/Employee");
 const Intern = require("./lib/Intern");
+const {writeToFile, copyToFile} = require("./src/generatePage");
+const { generatePageLayouts } = require("./src/generatePageLayout");
+
+
 let teamMemberArr = [];
 
-const teamMembers = () => {
-  inquirer
+const teamMembers = async() => {
+  
+    return inquirer
     .prompt([
       {
         type: "list",
@@ -17,80 +21,60 @@ const teamMembers = () => {
           "Manager",
           "Engineer",
           "Employee",
-          "Intern",
-          "Team Complete - Generate Team",
+          "Intern"
         ],
       },
     ])
 
     .then((answer) => {
-      console.log(answer);
+      // console.log(answer);
       if (answer.title == "Manager") {
         let newManager = new Manager();
-        let addNewManager = newManager.createNewManager();
-        return addNewManager;
-      } else if (answer.title == "Engineer") {
+        let addNewEmployee = newManager.createNewManager();
+        return addNewEmployee
+        // console.log(teamMemberArr);
+      } 
+      
+      if (answer.title == "Engineer") {
         let newEngineer = new Engineer();
-        let addNewEngineer = newEngineer.createNewEngineer();
-        return addNewEngineer;
-        // console.log(teamMemberArr);
-      } else if (answer.title == "Employee") {
-        let newEmployee = new Employee();
-        let addNewEmployee = newEmployee.createNewEmployee();
-        return addNewEmployee;
-        // console.log(teamMemberArr);
-      } else if (answer.title == "Intern") {
-        let newIntern = new Intern();
-        let addNewIntern = newIntern.createNewIntern();
-        return addNewIntern;
+        let addNewEmployee = newEngineer.createNewEngineer();
+        return addNewEmployee
         // console.log(teamMemberArr);
       }
-      // else if (answer.title == "Team Complete - Generate Team") {
-      //     return teamMemberArr;
-      //   }
+      
+      if (answer.title == "Employee") {
+        let newEmployee = new Employee();
+        let addNewEmployee = newEmployee.createNewEmployee();
+        return addNewEmployee
+        // console.log(teamMemberArr);
+      } 
+      if (answer.title == "Intern") {
+        let newIntern = new Intern();
+        let addNewEmployee = newIntern.createNewIntern();
+        return addNewEmployee
+        // console.log(teamMemberArr);
+      }
     })
-    .then((answer) => {
+    .then((answer)=>{
       // console.log(answer);
       teamMemberArr.push(answer);
-      console.log(teamMemberArr);
-      async function confirmNewMember() {
+      // console.log(teamMemberArr);
+        if(answer.confirmAddMember == true) {
         console.log(`
           =======================
           Add New Member to Team
           =======================
           `);
-        return inquirer.prompt({
-          type: "confirm",
-          name: "confirmAddMember",
-          message: "Would you like to add a new employee to this team?",
-          default: false,
-        });
-      }
-      async function addMember() {
-        let answer = await confirmNewMember();
-        // console.log(answer);
-        if (answer.confirmAddMember == true) {
-          teamMembers();
-        } else {
-          console.log(teamMemberArr);
-          return teamMemberArr;
-        }
-      }
-      addMember();
-    });
+        teamMembers();
+        
+      } else {
+        // console.log(teamMemberArr);
+        generatePageLayouts(teamMemberArr)
+    }
+  });
+
 };
 
 
-// TODO: Create a function to initialize app
-function init() {
-  teamMembers();
-  //     //   .then((data) => {
-  //     //   console.log(questions);
-  //     //   console.log(data);
-  //     .then ((teamMemberArr) => {
-  //     writeToFile("teamMembers.html", generatePage(teamMemberArr))
-  // })
-}
-
-// Function call to initialize app
-init();
+//the starts the application. shows the flow of the application as well
+teamMembers()
