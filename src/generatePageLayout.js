@@ -3,7 +3,7 @@ const { writeToFile, copyToFile } = require("./generatePage");
 // creates intern cards
 const employeeCard = function (employee) {
   return `
-  <div class="col-lg-4 col-xl-5 m-2">
+  <div class="">
       <div class="card">
           <div class="card-header">
               <h2 class="text-secondary">${employee.name}</h2>
@@ -22,7 +22,7 @@ const employeeCard = function (employee) {
 //creates manager cards
 const managerCard = function (manager) {
   return `
-  <div class="col-lg-4 col-xl-5 m-2">
+  <div class="">
       <div class="card">
           <div class="card-header">
               <h2 class="text-secondary">${manager.name}</h2>
@@ -41,7 +41,7 @@ const managerCard = function (manager) {
 // creates engineer cards
 const engineerCard = function (engineer) {
   return `
-  <div class="col-lg-4 col-xl-5 m-2">
+  <div class="">
       <div class="card">
           <div class="card-header">
               <h2 class="text-secondary">${engineer.name}</h2>
@@ -60,7 +60,7 @@ const engineerCard = function (engineer) {
 // creates intern cards
 const internCard = function (intern) {
   return `
-  <div class="col-lg-4 col-xl-5 m-2">
+  <div class="">
       <div class="card">
           <div class="card-header">
               <h2 class="text-secondary">${intern.name}</h2>
@@ -134,8 +134,6 @@ const pageLayout = function (teamInfoCards) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>My Team</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-      <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="style.css">
     </head>
   
@@ -145,8 +143,8 @@ const pageLayout = function (teamInfoCards) {
           <h1 class="">My Team</h1>
         </div>
       </header>
-      <main class="container my-5">
-        <div class="flex-row justify-center">
+      <main class="container">
+        <div class="">
           ${teamInfoCards}
         </div>
       </main>

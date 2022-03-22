@@ -44,5 +44,6 @@ body {
     margin: 100px auto;
     justify-content: space-evenly;
     display: flex;
+    flex-direction: row;
     
 }
